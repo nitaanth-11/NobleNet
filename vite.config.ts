@@ -11,6 +11,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         products: resolve(__dirname, 'products.html'),
         clients: resolve(__dirname, 'clients.html'),
+        privacy: resolve(__dirname, 'privacy.html'),
       },
     },
   },

@@ -137,6 +137,9 @@ export function ContactFooter() {
             <a href="./clients.html" className="transition hover:text-white">
               What Clients Say
             </a>
+            <a href="./privacy.html" className="transition hover:text-white">
+              Privacy Policy
+            </a>
           </div>
         </div>
       </div>

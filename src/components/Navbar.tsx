@@ -3,7 +3,7 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { COMPANY_INFO } from '../data/company';
 
 interface NavbarProps {
-  page: 'home' | 'products' | 'clients';
+  page: 'home' | 'products' | 'clients' | 'privacy';
 }
 
 export function Navbar({ page }: NavbarProps) {
