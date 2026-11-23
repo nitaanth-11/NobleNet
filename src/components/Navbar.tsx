@@ -53,35 +53,35 @@ export function Navbar({ page }: NavbarProps) {
           : 'border-b border-white/[0.04] bg-black/35 backdrop-blur-md'
       }`}
     >
-      <div className="flex w-full items-center justify-between px-6 py-4 sm:px-10 lg:px-16">
+      <div className="flex w-full items-center justify-between px-6 py-5 sm:px-10 sm:py-6 lg:px-16">
         {/* Top Brand Logo — Unified Inter font */}
         <a
           href="./index.html"
-          className="group flex items-center gap-3.5 focus:outline-none"
+          className="group flex items-center gap-4 focus:outline-none"
           aria-label={COMPANY_INFO.name}
         >
           <img
             src="/assets/noblenet-emblem.png"
             alt="NobleNet Logo"
-            className="h-9 w-9 object-contain transition-transform duration-500 group-hover:scale-105"
+            className="h-12 w-12 object-contain transition-transform duration-500 group-hover:scale-105 sm:h-14 sm:w-14"
           />
           <div className="leading-none">
-            <span className="block text-[15px] font-semibold tracking-[-0.02em] text-white">
+            <span className="block text-lg font-semibold tracking-[-0.025em] text-white sm:text-xl">
               NobleNet
             </span>
-            <span className="mt-1 block text-[11px] font-medium tracking-[0.04em] text-zinc-400">
+            <span className="mt-1.5 block text-xs font-medium tracking-[0.03em] text-zinc-400 sm:text-[13px]">
               Software Technologies
             </span>
           </div>
         </a>
 
         {/* Desktop Links */}
-        <nav className="hidden items-center gap-9 md:flex" aria-label="Primary Navigation">
+        <nav className="hidden items-center gap-10 md:flex lg:gap-12" aria-label="Primary Navigation">
           {links.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className={`text-[13px] font-medium tracking-[-0.01em] transition-colors ${
+              className={`text-[15px] font-medium tracking-[-0.01em] transition-colors lg:text-base ${
                 link.active ? 'text-white' : 'text-zinc-400 hover:text-white'
               }`}
             >
@@ -95,17 +95,17 @@ export function Navbar({ page }: NavbarProps) {
           {page === 'products' ? (
             <a
               href="./index.html"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-1.5 text-[13px] font-medium text-white transition hover:border-white hover:bg-white hover:text-black"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-2.5 text-sm font-medium text-white transition hover:border-white hover:bg-white hover:text-black lg:text-[15px]"
             >
               <span>NobleNet Home</span>
             </a>
           ) : (
             <a
               href="./products.html"
-              className="group inline-flex items-center gap-1.5 rounded-full bg-[#2997FF] px-4 py-1.5 text-[13px] font-medium text-white transition hover:bg-[#1C88F0]"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#2997FF] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#1C88F0] lg:text-[15px]"
             >
               <span>SentinelAI</span>
-              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
           )}
         </div>
@@ -114,10 +114,10 @@ export function Navbar({ page }: NavbarProps) {
         <button
           type="button"
           onClick={() => setMenuOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white md:hidden"
+          className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/15 text-white md:hidden"
           aria-label="Toggle Menu"
         >
-          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 

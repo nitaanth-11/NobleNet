@@ -30,7 +30,7 @@ export function useSmoothScroll() {
       const dest = document.querySelector(hash);
       if (dest) {
         e.preventDefault();
-        lenis.scrollTo(dest as HTMLElement, { offset: -80 });
+        lenis.scrollTo(dest as HTMLElement, { offset: -104 });
       }
     };
 
