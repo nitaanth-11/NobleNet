@@ -82,13 +82,13 @@ export default function PrivacyApp() {
       <Navbar page="privacy" />
 
       {/* ================= HEADER ================= */}
-      <section className="relative w-full overflow-hidden border-b border-white/10 bg-black pt-36 pb-20 lg:pt-44 lg:pb-24">
+      <section className="relative w-full overflow-hidden border-b border-white/10 bg-black pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-24">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/4 top-0 h-[380px] w-[620px] rounded-full bg-[#2997FF]/10 blur-[140px]"
+          className="pointer-events-none absolute left-1/4 top-0 h-[340px] w-[560px] rounded-full bg-[#2997FF]/10 blur-[140px]"
         />
 
-        <div className="relative w-full px-6 sm:px-10 lg:px-16">
+        <div className="relative w-full px-4 sm:px-8 lg:px-16">
           <a
             href="./index.html"
             className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.14em] text-zinc-500 transition hover:text-white"
@@ -97,12 +97,12 @@ export default function PrivacyApp() {
             <span>Back to NobleNet</span>
           </a>
 
-          <div className="mt-8 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+          <div className="mt-6 flex flex-col justify-between gap-6 sm:mt-8 lg:flex-row lg:items-end lg:gap-8">
             <div className="max-w-4xl">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
                 Legal &amp; Privacy
               </p>
-              <h1 className="mt-4 text-5xl font-semibold leading-[1.03] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
+              <h1 className="mt-3 text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:mt-4 sm:text-6xl lg:text-7xl">
                 Privacy Policy.
               </h1>
             </div>
@@ -114,35 +114,35 @@ export default function PrivacyApp() {
         </div>
       </section>
 
-      {/* ================= POLICY SECTIONS (Full-Width Hairline Layout) ================= */}
+      {/* ================= POLICY SECTIONS ================= */}
       <section className="w-full bg-[#030508]">
         <div className="w-full divide-y divide-white/10">
           {POLICY_SECTIONS.map((sec) => (
             <article
               key={sec.index}
-              className="reveal-up w-full px-6 py-16 sm:px-10 lg:px-16 lg:py-20"
+              className="reveal-up w-full px-4 py-12 sm:px-8 sm:py-16 lg:px-16 lg:py-20"
             >
-              <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
-                <div className="lg:col-span-4">
+              <div className="grid gap-6 sm:gap-8 lg:grid-cols-12 lg:items-start">
+                <div className="min-w-0 lg:col-span-4">
                   <span className="text-xs font-semibold tracking-[0.14em] text-[#2997FF]">
                     {sec.index}
                   </span>
-                  <h2 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
+                  <h2 className="mt-2.5 text-2xl font-semibold tracking-[-0.03em] text-white sm:mt-3 sm:text-3xl">
                     {sec.title}
                   </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+                  <p className="mt-2.5 text-sm leading-relaxed text-zinc-400 sm:mt-3">
                     {sec.summary}
                   </p>
                 </div>
 
-                <div className="lg:col-span-8 lg:border-l lg:border-white/10 lg:pl-12">
-                  <ul className="space-y-4">
+                <div className="min-w-0 lg:col-span-8 lg:border-l lg:border-white/10 lg:pl-12">
+                  <ul className="space-y-3.5 sm:space-y-4">
                     {sec.points.map((pt, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-3.5 text-base leading-relaxed text-zinc-300"
+                        className="flex items-start gap-3 text-sm leading-relaxed text-zinc-300 sm:gap-3.5 sm:text-base"
                       >
-                        <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#2997FF]" />
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#2997FF] sm:mt-2.5" />
                         <span>{pt}</span>
                       </li>
                     ))}
@@ -155,8 +155,8 @@ export default function PrivacyApp() {
       </section>
 
       {/* ================= PRIVACY CONTACT STRIP ================= */}
-      <section className="w-full border-t border-white/10 bg-black py-20">
-        <div className="reveal-up flex w-full flex-col justify-between gap-6 px-6 sm:px-10 lg:flex-row lg:items-center lg:px-16">
+      <section className="w-full border-t border-white/10 bg-black py-16 sm:py-20">
+        <div className="reveal-up flex w-full flex-col justify-between gap-6 px-4 sm:px-8 lg:flex-row lg:items-center lg:px-16">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
               Privacy Inquiries
@@ -170,9 +170,9 @@ export default function PrivacyApp() {
           </div>
           <a
             href={`mailto:${COMPANY_INFO.email}?subject=Privacy%20Inquiry%20—%20NobleNet`}
-            className="inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-black transition hover:bg-zinc-200"
+            className="inline-flex w-full items-center justify-center gap-2.5 break-all rounded-full bg-white px-6 py-3.5 text-sm font-medium text-black transition hover:bg-zinc-200 sm:w-auto sm:px-7"
           >
-            <Mail className="h-4 w-4" />
+            <Mail className="h-4 w-4 shrink-0" />
             <span>{COMPANY_INFO.email}</span>
           </a>
         </div>

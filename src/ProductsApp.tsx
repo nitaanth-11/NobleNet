@@ -29,9 +29,9 @@ const PIPELINE_MODES: { id: SentinelMode; label: string; desc: string }[] = [
 
 const CHAPTER_LINKS = [
   { label: 'Overview', href: '#overview' },
-  { label: 'Versions & Requirements', href: '#versions' },
+  { label: 'Versions', href: '#versions' },
   { label: 'Installation', href: '#installation' },
-  { label: 'Execution Modes', href: '#modes' },
+  { label: 'Modes', href: '#modes' },
   { label: 'CLI Reference', href: '#docs' },
   { label: 'AST Remediation', href: '#remediation' },
   { label: 'Exit Codes & CI', href: '#ci' },
@@ -60,15 +60,15 @@ export default function ProductsApp() {
     <div className="relative min-h-screen w-full bg-black text-[#F5F5F7]">
       <Navbar page="products" />
 
-      {/* ================= FLAGSHIP EDITORIAL LAUNCH HERO (Gemini Launch Style) ================= */}
-      <section className="relative w-full overflow-hidden bg-black pt-36 pb-16 lg:pt-44 lg:pb-20">
+      {/* ================= FLAGSHIP EDITORIAL LAUNCH HERO ================= */}
+      <section className="relative w-full overflow-hidden bg-black pt-28 pb-12 sm:pt-36 sm:pb-16 lg:pt-44 lg:pb-20">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-[#2997FF]/12 blur-[160px]"
+          className="pointer-events-none absolute left-1/2 top-10 h-[440px] w-[760px] -translate-x-1/2 rounded-full bg-[#2997FF]/12 blur-[160px]"
         />
 
-        <div className="relative mx-auto max-w-5xl px-6 text-center sm:px-10">
-          <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-medium text-zinc-400">
+        <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs font-medium text-zinc-400">
             <a
               href="./index.html"
               className="inline-flex items-center gap-1.5 text-zinc-400 transition hover:text-white"
@@ -84,26 +84,28 @@ export default function ProductsApp() {
             <span>Python {SENTINEL_META.pythonRequires}</span>
           </div>
 
-          <h1 className="mt-7 text-5xl font-semibold leading-[1.03] tracking-[-0.045em] text-white sm:text-7xl lg:text-[80px]">
+          <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] text-white sm:mt-7 sm:text-6xl md:text-7xl lg:text-[80px]">
             Introducing SentinelAI.
           </h1>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-zinc-400 sm:text-2xl sm:leading-[1.45]">
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-zinc-400 sm:mt-6 sm:text-xl lg:text-2xl lg:leading-[1.45]">
             A deterministic multi-scanner DevSecOps CLI and Python library — combining Semgrep, Bandit, GitLeaks, Trivy, and OSV-Scanner with CWE/AST correlation, opt-in local AI reasoning, and closed-loop AST code remediation.
           </p>
 
           {/* Flagship Launch Actions + Instant Copyable Install Pill */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3.5">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-[#070B12] px-5 py-3 text-sm">
-              <Terminal className="h-4 w-4 text-[#2997FF]" />
-              <code className="font-sans font-medium text-sky-300">
-                pip install nitaanth-sentinelai
-              </code>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-3.5">
+            <div className="flex w-full max-w-full items-center justify-between gap-2.5 overflow-x-auto rounded-full border border-white/15 bg-[#070B12] px-4 py-3 text-xs sm:w-auto sm:justify-center sm:px-5 sm:text-sm">
+              <div className="flex items-center gap-2.5 whitespace-nowrap">
+                <Terminal className="h-4 w-4 shrink-0 text-[#2997FF]" />
+                <code className="font-sans font-medium text-sky-300">
+                  pip install nitaanth-sentinelai
+                </code>
+              </div>
               <button
                 type="button"
                 onClick={() => handleCopy('pip install nitaanth-sentinelai', 'hero-pip')}
                 aria-label="Copy pip install command"
-                className="ml-1 text-zinc-400 transition hover:text-white"
+                className="ml-1 shrink-0 text-zinc-400 transition hover:text-white"
               >
                 {copiedKey === 'hero-pip' ? (
                   <Check className="h-4 w-4 text-emerald-400" />
@@ -113,40 +115,42 @@ export default function ProductsApp() {
               </button>
             </div>
 
-            <a
-              href="#installation"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-zinc-200"
-            >
-              <span>Installation Guide</span>
-            </a>
+            <div className="flex w-full flex-wrap items-center justify-center gap-2.5 sm:w-auto sm:gap-3">
+              <a
+                href="#installation"
+                className="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-zinc-200 sm:flex-none sm:px-6"
+              >
+                <span>Installation Guide</span>
+              </a>
 
-            <a
-              href={SENTINEL_META.pypiUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-1.5 rounded-full border border-white/20 px-5 py-3 text-sm font-medium text-white transition hover:border-white/50"
-            >
-              <span>PyPI</span>
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </a>
+              <a
+                href={SENTINEL_META.pypiUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center justify-center gap-1.5 rounded-full border border-white/20 px-4 py-3 text-sm font-medium text-white transition hover:border-white/50 sm:px-5"
+              >
+                <span>PyPI</span>
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
 
-            <a
-              href={SENTINEL_META.dockerUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-1.5 rounded-full border border-white/20 px-5 py-3 text-sm font-medium text-zinc-300 transition hover:border-white/50 hover:text-white"
-            >
-              <span>Docker Hub</span>
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
+              <a
+                href={SENTINEL_META.dockerUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center justify-center gap-1.5 rounded-full border border-white/20 px-4 py-3 text-sm font-medium text-zinc-300 transition hover:border-white/50 hover:text-white sm:px-5"
+              >
+                <span>Docker</span>
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Full-Width Framed Interactive 3D Hero Stage (Editorial Media Showcase) */}
-        <div className="relative mt-14 w-full px-6 sm:px-10 lg:px-16">
+        {/* Full-Width Framed Interactive 3D Hero Stage */}
+        <div className="relative mt-10 w-full px-4 sm:mt-14 sm:px-8 lg:px-16">
           <div className="overflow-hidden border border-white/10 bg-[#04070E]">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-6 py-4">
-              <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-col justify-between gap-3 border-b border-white/10 px-4 py-3.5 sm:px-6 sm:py-4 lg:flex-row lg:items-center">
+              <div className="no-scrollbar flex items-center gap-2 overflow-x-auto pb-0.5 lg:pb-0">
                 {PIPELINE_MODES.map((m) => {
                   const active = mode === m.id;
                   return (
@@ -154,7 +158,7 @@ export default function ProductsApp() {
                       key={m.id}
                       type="button"
                       onClick={() => setMode(m.id)}
-                      className={`rounded-full px-4 py-1.5 text-xs font-medium transition ${
+                      className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-medium transition sm:px-4 ${
                         active
                           ? 'bg-[#2997FF] text-white'
                           : 'border border-white/15 text-zinc-400 hover:border-white/40 hover:text-white'
@@ -180,9 +184,9 @@ export default function ProductsApp() {
       {/* ================= STICKY EDITORIAL CHAPTER NAVIGATION ================= */}
       <nav
         aria-label="SentinelAI documentation chapters"
-        className="sticky top-[88px] z-40 w-full border-y border-white/10 bg-black/85 backdrop-blur-2xl sm:top-[104px]"
+        className="sticky top-[68px] z-40 w-full border-y border-white/10 bg-black/88 backdrop-blur-2xl sm:top-[84px] md:top-[92px] lg:top-[96px]"
       >
-        <div className="flex w-full items-center gap-7 overflow-x-auto px-6 py-3.5 sm:px-10 lg:px-16">
+        <div className="no-scrollbar flex w-full items-center gap-6 overflow-x-auto px-4 py-3 sm:gap-7 sm:px-8 sm:py-3.5 lg:px-16">
           {CHAPTER_LINKS.map((link) => (
             <a
               key={link.href}
@@ -198,36 +202,38 @@ export default function ProductsApp() {
       {/* ================= CHAPTER 01: OVERVIEW & CAPABILITIES ================= */}
       <section
         id="overview"
-        className="w-full scroll-mt-36 bg-[#030508] py-24 lg:py-28"
+        className="w-full scroll-mt-36 bg-[#030508] py-16 sm:py-24 lg:py-28"
       >
-        <div className="w-full px-6 sm:px-10 lg:px-16">
+        <div className="w-full px-4 sm:px-8 lg:px-16">
           <div className="reveal-up max-w-4xl">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
               01 · Overview
             </p>
-            <h2 className="mt-3 text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl">
+            <h2 className="mt-3 text-3xl font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl">
               Deterministic scanning first. Grounded AI when you want it.
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-zinc-400">
-              SentinelAI decouples industry-standard SAST, secret scanning, and SCA engines behind a strict Pydantic contract (`FindingsProvider`). Scanner-only runs execute in seconds with zero credentials for CI/CD gating, while opt-in multi-agent reasoning enriches correlated issues locally.
+            <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:mt-5 sm:text-lg">
+              SentinelAI decouples industry-standard SAST, secret scanning, and SCA engines behind a strict Pydantic contract (<code className="font-sans text-zinc-200">FindingsProvider</code>). Scanner-only runs execute in seconds with zero credentials for CI/CD gating, while opt-in multi-agent reasoning enriches correlated issues locally.
             </p>
           </div>
 
-          <div className="reveal-up mt-14 divide-y divide-white/10 border-y border-white/10">
+          <div className="reveal-up mt-10 divide-y divide-white/10 border-y border-white/10 sm:mt-14">
             {SENTINEL_MODULES.map((mod) => (
               <div
                 key={mod.id}
-                className="grid gap-6 py-8 lg:grid-cols-12 lg:items-center"
+                className="grid gap-4 py-6 sm:gap-6 sm:py-8 lg:grid-cols-12 lg:items-center"
               >
                 <span className="text-xs font-semibold text-zinc-500 lg:col-span-1">
                   {mod.code}
                 </span>
-                <h3 className="text-2xl font-semibold tracking-[-0.03em] text-white lg:col-span-3">
+                <h3 className="text-xl font-semibold tracking-[-0.03em] text-white sm:text-2xl lg:col-span-3">
                   {mod.title}
                 </h3>
-                <p className="text-base text-zinc-400 lg:col-span-6">{mod.summary}</p>
-                <div className="lg:col-span-2 lg:text-right">
-                  <p className="text-2xl font-semibold text-[#2997FF]">{mod.metric}</p>
+                <p className="text-sm leading-relaxed text-zinc-400 sm:text-base lg:col-span-6">
+                  {mod.summary}
+                </p>
+                <div className="flex items-baseline gap-2.5 lg:col-span-2 lg:block lg:text-right">
+                  <p className="text-xl font-semibold text-[#2997FF] sm:text-2xl">{mod.metric}</p>
                   <p className="text-xs font-medium text-zinc-500">{mod.metricLabel}</p>
                 </div>
               </div>
@@ -239,35 +245,35 @@ export default function ProductsApp() {
       {/* ================= CHAPTER 02: VERSIONS & SYSTEM REQUIREMENTS ================= */}
       <section
         id="versions"
-        className="w-full scroll-mt-36 border-t border-white/10 bg-black py-24 lg:py-28"
+        className="w-full scroll-mt-36 border-t border-white/10 bg-black py-16 sm:py-24 lg:py-28"
       >
-        <div className="w-full px-6 sm:px-10 lg:px-16">
+        <div className="w-full px-4 sm:px-8 lg:px-16">
           <div className="reveal-up max-w-4xl">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
               02 · Versions &amp; Requirements
             </p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
               Exact runtime &amp; pinned scanner matrix.
             </h2>
-            <p className="mt-4 text-base text-zinc-400">
+            <p className="mt-4 text-sm text-zinc-400 sm:text-base">
               Every scanner in SentinelAI is pinned to a verified version (never <code className="font-sans text-zinc-200">latest</code>), and GitHub releases are checked with <code className="font-sans text-zinc-200">sha256sum -c</code> in the official Docker build.
             </p>
           </div>
 
-          <div className="reveal-up mt-14 grid gap-14 lg:grid-cols-12">
+          <div className="reveal-up mt-10 grid gap-12 sm:mt-14 lg:grid-cols-12 lg:gap-14">
             {/* Table 1: Python Runtime & Package Dependencies */}
-            <div className="lg:col-span-6">
-              <h3 className="text-xl font-semibold tracking-[-0.025em] text-white">
+            <div className="min-w-0 lg:col-span-6">
+              <h3 className="text-lg font-semibold tracking-[-0.025em] text-white sm:text-xl">
                 Python Runtime &amp; Core Dependencies
               </h3>
               <p className="mt-1.5 text-sm text-zinc-500">
                 Installed automatically via <code className="font-sans text-zinc-300">pip install nitaanth-sentinelai</code>
               </p>
-              <div className="mt-6 divide-y divide-white/10 border-y border-white/10">
+              <div className="mt-5 divide-y divide-white/10 border-y border-white/10 sm:mt-6">
                 {RUNTIME_REQUIREMENTS.map((row) => (
                   <div
                     key={row.component}
-                    className="grid gap-2 py-4 sm:grid-cols-12 sm:items-baseline"
+                    className="grid gap-1.5 py-4 sm:grid-cols-12 sm:items-baseline sm:gap-2"
                   >
                     <span className="text-sm font-semibold text-white sm:col-span-4">
                       {row.component}
@@ -284,18 +290,18 @@ export default function ProductsApp() {
             </div>
 
             {/* Table 2: Pinned Security Scanners */}
-            <div className="lg:col-span-6 lg:border-l lg:border-white/10 lg:pl-12">
-              <h3 className="text-xl font-semibold tracking-[-0.025em] text-white">
+            <div className="min-w-0 lg:col-span-6 lg:border-l lg:border-white/10 lg:pl-12">
+              <h3 className="text-lg font-semibold tracking-[-0.025em] text-white sm:text-xl">
                 Pinned Security Scanners (Core &amp; Extended)
               </h3>
               <p className="mt-1.5 text-sm text-zinc-500">
                 Core runs offline; <code className="font-sans text-zinc-300">--extended</code> adds Trivy &amp; OSV-Scanner (requires a recognized dependency manifest).
               </p>
-              <div className="mt-6 divide-y divide-white/10 border-y border-white/10">
+              <div className="mt-5 divide-y divide-white/10 border-y border-white/10 sm:mt-6">
                 {PINNED_SCANNERS.map((row) => (
                   <div
                     key={row.component}
-                    className="grid gap-2 py-4 sm:grid-cols-12 sm:items-baseline"
+                    className="grid gap-1.5 py-4 sm:grid-cols-12 sm:items-baseline sm:gap-2"
                   >
                     <div className="sm:col-span-4">
                       <span className="block text-sm font-semibold text-white">
@@ -320,15 +326,15 @@ export default function ProductsApp() {
       {/* ================= CHAPTER 03: STEP-BY-STEP INSTALLATION PROCESSES ================= */}
       <section
         id="installation"
-        className="w-full scroll-mt-36 border-t border-white/10 bg-[#030508] py-24 lg:py-28"
+        className="w-full scroll-mt-36 border-t border-white/10 bg-[#030508] py-16 sm:py-24 lg:py-28"
       >
-        <div className="w-full px-6 sm:px-10 lg:px-16">
-          <div className="reveal-up flex flex-col justify-between gap-6 border-b border-white/10 pb-10 lg:flex-row lg:items-end">
+        <div className="w-full px-4 sm:px-8 lg:px-16">
+          <div className="reveal-up flex flex-col justify-between gap-4 border-b border-white/10 pb-8 sm:pb-10 lg:flex-row lg:items-end lg:gap-6">
             <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
                 03 · Installation Processes
               </p>
-              <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
                 Four ways to install &amp; run SentinelAI.
               </h2>
             </div>
@@ -339,26 +345,26 @@ export default function ProductsApp() {
 
           {/* Horizontal Method Selector Tabs */}
           <div className="reveal-up grid grid-cols-2 divide-x divide-white/10 border-b border-white/10 lg:grid-cols-4">
-            {INSTALL_GUIDES.map((tab) => {
+            {INSTALL_GUIDES.map((tab, idx) => {
               const active = tab.id === installGuideId;
               return (
                 <button
                   key={tab.id}
                   type="button"
                   onClick={() => setInstallGuideId(tab.id)}
-                  className={`relative px-4 py-5 text-left transition sm:px-6 ${
-                    active ? 'bg-white/[0.04] opacity-100' : 'opacity-55 hover:opacity-90'
-                  }`}
+                  className={`relative px-3.5 py-4 text-left transition sm:px-6 sm:py-5 ${
+                    idx >= 2 ? 'border-t border-white/10 lg:border-t-0' : ''
+                  } ${active ? 'bg-white/[0.04] opacity-100' : 'opacity-55 hover:opacity-90'}`}
                 >
                   <span
                     className={`absolute inset-x-0 top-0 h-[2px] ${
                       active ? 'bg-[#2997FF]' : 'bg-transparent'
                     }`}
                   />
-                  <span className="block text-xs font-semibold uppercase tracking-[0.12em] text-[#2997FF]">
+                  <span className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-[#2997FF] sm:text-xs">
                     {tab.badge}
                   </span>
-                  <span className="mt-1 block text-base font-semibold text-white">
+                  <span className="mt-1 block text-sm font-semibold text-white sm:text-base">
                     {tab.label}
                   </span>
                 </button>
@@ -367,31 +373,31 @@ export default function ProductsApp() {
           </div>
 
           {/* Active Installation Walkthrough */}
-          <div className="reveal-up mt-10">
-            <p className="max-w-3xl text-base leading-relaxed text-zinc-300">
+          <div className="reveal-up mt-8 sm:mt-10">
+            <p className="max-w-3xl text-sm leading-relaxed text-zinc-300 sm:text-base">
               {activeGuide.summary}
             </p>
 
-            <div className="mt-8 divide-y divide-white/10 border-y border-white/10">
+            <div className="mt-6 divide-y divide-white/10 border-y border-white/10 sm:mt-8">
               {activeGuide.steps.map((s) => {
                 const copyId = `${activeGuide.id}-${s.step}`;
                 return (
                   <div
                     key={s.step}
-                    className="grid gap-6 py-7 lg:grid-cols-12 lg:items-center"
+                    className="grid gap-5 py-6 sm:gap-6 sm:py-7 lg:grid-cols-12 lg:items-center"
                   >
-                    <div className="lg:col-span-5">
+                    <div className="min-w-0 lg:col-span-5">
                       <span className="text-xs font-semibold text-[#2997FF]">
                         STEP {s.step}
                       </span>
-                      <h3 className="mt-1.5 text-xl font-semibold tracking-[-0.025em] text-white">
+                      <h3 className="mt-1.5 text-lg font-semibold tracking-[-0.025em] text-white sm:text-xl">
                         {s.title}
                       </h3>
-                      <p className="mt-2 text-sm text-zinc-400">{s.note}</p>
+                      <p className="mt-1.5 text-sm text-zinc-400">{s.note}</p>
                     </div>
-                    <div className="lg:col-span-7">
-                      <div className="flex items-start justify-between gap-4 border border-white/10 bg-[#060A12] px-5 py-4">
-                        <pre className="overflow-x-auto font-sans text-xs leading-6 text-sky-300 sm:text-sm">
+                    <div className="min-w-0 lg:col-span-7">
+                      <div className="flex items-start justify-between gap-3 border border-white/10 bg-[#060A12] px-4 py-3.5 sm:px-5 sm:py-4">
+                        <pre className="min-w-0 flex-1 overflow-x-auto font-sans text-xs leading-6 text-sky-300 sm:text-sm">
                           <code>{s.command}</code>
                         </pre>
                         <button
@@ -421,39 +427,41 @@ export default function ProductsApp() {
         </div>
       </section>
 
-      {/* ================= CHAPTER 04: TWO WAYS TO RUN (Editorial Comparison Table) ================= */}
+      {/* ================= CHAPTER 04: TWO WAYS TO RUN ================= */}
       <section
         id="modes"
-        className="w-full scroll-mt-36 border-t border-white/10 bg-black py-24 lg:py-28"
+        className="w-full scroll-mt-36 border-t border-white/10 bg-black py-16 sm:py-24 lg:py-28"
       >
-        <div className="w-full px-6 sm:px-10 lg:px-16">
+        <div className="w-full px-4 sm:px-8 lg:px-16">
           <div className="reveal-up max-w-4xl">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
               04 · Execution Modes
             </p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
               Scanner-only CI gate vs. AI-enriched triage.
             </h2>
-            <p className="mt-4 text-base text-zinc-400">
+            <p className="mt-4 text-sm text-zinc-400 sm:text-base">
               Scanner-only is a first-class default mode used in SentinelAI&apos;s own CI on every push. AI enrichment is strictly opt-in for deep local remediation and root-cause analysis.
             </p>
           </div>
 
-          <div className="reveal-up mt-12 overflow-x-auto border-y border-white/10">
-            <table className="w-full border-collapse text-left">
+          <div className="reveal-up mt-10 overflow-x-auto border-y border-white/10 sm:mt-12">
+            <table className="w-full min-w-[600px] border-collapse text-left">
               <thead>
                 <tr className="border-b border-white/10 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
-                  <th className="py-5 pr-6">Dimension</th>
-                  <th className="py-5 px-6 text-white">Scanner-Only (Default)</th>
-                  <th className="py-5 pl-6 text-[#2997FF]">AI-Enriched (--ai)</th>
+                  <th className="py-4 pr-5 sm:py-5 sm:pr-6">Dimension</th>
+                  <th className="px-5 py-4 text-white sm:px-6 sm:py-5">Scanner-Only (Default)</th>
+                  <th className="py-4 pl-5 text-[#2997FF] sm:py-5 sm:pl-6">AI-Enriched (--ai)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/10 text-sm sm:text-base">
                 {RUN_MODES_COMPARISON.map((row) => (
                   <tr key={row.aspect}>
-                    <td className="py-5 pr-6 font-medium text-zinc-400">{row.aspect}</td>
-                    <td className="py-5 px-6 text-zinc-200">{row.scannerOnly}</td>
-                    <td className="py-5 pl-6 text-zinc-200">{row.aiEnriched}</td>
+                    <td className="py-4 pr-5 font-medium text-zinc-400 sm:py-5 sm:pr-6">
+                      {row.aspect}
+                    </td>
+                    <td className="px-5 py-4 text-zinc-200 sm:px-6 sm:py-5">{row.scannerOnly}</td>
+                    <td className="py-4 pl-5 text-zinc-200 sm:py-5 sm:pl-6">{row.aiEnriched}</td>
                   </tr>
                 ))}
               </tbody>
@@ -465,21 +473,21 @@ export default function ProductsApp() {
       {/* ================= CHAPTER 05: INTERACTIVE CLI REFERENCE & PYTHON SDK ================= */}
       <section
         id="docs"
-        className="w-full scroll-mt-36 border-t border-white/10 bg-[#030508] py-24 lg:py-28"
+        className="w-full scroll-mt-36 border-t border-white/10 bg-[#030508] py-16 sm:py-24 lg:py-28"
       >
-        <div className="w-full px-6 sm:px-10 lg:px-16">
-          <div className="reveal-up border-b border-white/10 pb-10">
+        <div className="w-full px-4 sm:px-8 lg:px-16">
+          <div className="reveal-up border-b border-white/10 pb-8 sm:pb-10">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
               05 · CLI Reference &amp; Python SDK
             </p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
               Official commands &amp; programmatic API.
             </h2>
           </div>
 
           {/* Interactive Command Reference Split */}
-          <div className="reveal-up mt-6 grid gap-12 lg:grid-cols-12">
-            <div className="divide-y divide-white/10 lg:col-span-5">
+          <div className="reveal-up mt-6 grid gap-10 lg:grid-cols-12 lg:gap-12">
+            <div className="min-w-0 divide-y divide-white/10 lg:col-span-5">
               {SENTINEL_COMMANDS.map((cmd, idx) => {
                 const isSelected = idx === activeCmdIdx;
                 return (
@@ -487,12 +495,12 @@ export default function ProductsApp() {
                     key={cmd.id}
                     type="button"
                     onClick={() => setActiveCmdIdx(idx)}
-                    className={`group flex w-full flex-col py-5 text-left transition-all ${
+                    className={`group flex w-full flex-col py-4 text-left transition-all sm:py-5 ${
                       isSelected ? 'opacity-100' : 'opacity-55 hover:opacity-90'
                     }`}
                   >
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-baseline gap-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex items-baseline gap-3 sm:gap-4">
                         <span
                           className={`text-xs font-semibold ${
                             isSelected ? 'text-[#2997FF]' : 'text-zinc-600'
@@ -508,14 +516,14 @@ export default function ProductsApp() {
                         {cmd.category}
                       </span>
                     </div>
-                    <p className="mt-1.5 pl-8 text-sm text-zinc-400">{cmd.summary}</p>
+                    <p className="mt-1.5 pl-7 text-sm text-zinc-400 sm:pl-8">{cmd.summary}</p>
                   </button>
                 );
               })}
             </div>
 
-            <div className="lg:col-span-7 lg:border-l lg:border-white/10 lg:pl-12">
-              <div className="sticky top-40">
+            <div className="min-w-0 lg:col-span-7 lg:border-l lg:border-white/10 lg:pl-12">
+              <div className="lg:sticky lg:top-40">
                 <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
                   <div>
                     <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2997FF]">
@@ -548,12 +556,12 @@ export default function ProductsApp() {
                   <p className="text-xs font-medium uppercase tracking-[0.14em] text-zinc-500">
                     Usage
                   </p>
-                  <pre className="mt-2.5 overflow-x-auto border border-white/10 bg-[#070B12] px-5 py-4 font-sans text-sm text-white">
+                  <pre className="mt-2.5 max-w-full overflow-x-auto border border-white/10 bg-[#070B12] px-4 py-3.5 font-sans text-xs text-white sm:px-5 sm:py-4 sm:text-sm">
                     <code>$ {activeCmd.usage}</code>
                   </pre>
                 </div>
 
-                <div className="mt-8">
+                <div className="mt-7 sm:mt-8">
                   <p className="text-xs font-medium uppercase tracking-[0.14em] text-zinc-500">
                     Flags &amp; Options
                   </p>
@@ -561,7 +569,7 @@ export default function ProductsApp() {
                     {activeCmd.flags.map((f) => (
                       <div
                         key={f.flag}
-                        className="grid gap-2 py-3.5 sm:grid-cols-12 sm:items-baseline"
+                        className="grid gap-1.5 py-3.5 sm:grid-cols-12 sm:items-baseline sm:gap-2"
                       >
                         <code className="font-sans text-xs font-semibold text-[#2997FF] sm:col-span-4">
                           {f.flag}
@@ -574,11 +582,11 @@ export default function ProductsApp() {
                   </div>
                 </div>
 
-                <div className="mt-8">
+                <div className="mt-7 sm:mt-8">
                   <p className="text-xs font-medium uppercase tracking-[0.14em] text-zinc-500">
                     Sample Output
                   </p>
-                  <div className="mt-2.5 overflow-x-auto border border-white/10 bg-[#05080F] p-5 font-sans text-xs leading-7 sm:text-[13px]">
+                  <div className="mt-2.5 max-w-full overflow-x-auto border border-white/10 bg-[#05080F] p-4 font-sans text-xs leading-6 sm:p-5 sm:text-[13px] sm:leading-7">
                     {activeCmd.sampleOutput.map((line, i) => {
                       const colorClass = line.startsWith('$')
                         ? 'text-white font-medium'
@@ -605,10 +613,10 @@ export default function ProductsApp() {
           </div>
 
           {/* Python Library Snippet */}
-          <div className="reveal-up mt-16 border-t border-white/10 pt-14">
+          <div className="reveal-up mt-12 border-t border-white/10 pt-10 sm:mt-16 sm:pt-14">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
-                <h3 className="text-2xl font-semibold tracking-[-0.03em] text-white">
+                <h3 className="text-xl font-semibold tracking-[-0.03em] text-white sm:text-2xl">
                   Programmatic Python Library Usage
                 </h3>
                 <p className="mt-1 text-sm text-zinc-400">
@@ -633,7 +641,7 @@ export default function ProductsApp() {
                 )}
               </button>
             </div>
-            <pre className="mt-5 overflow-x-auto border border-white/10 bg-[#05080F] p-6 font-sans text-xs leading-7 text-zinc-200 sm:text-sm">
+            <pre className="mt-5 max-w-full overflow-x-auto border border-white/10 bg-[#05080F] p-4 font-sans text-xs leading-6 text-zinc-200 sm:p-6 sm:text-sm sm:leading-7">
               <code>{SENTINEL_PYTHON_SNIPPET}</code>
             </pre>
           </div>
@@ -643,26 +651,26 @@ export default function ProductsApp() {
       {/* ================= CHAPTER 06: CLOSED-LOOP AST REMEDIATION & CWE COVERAGE ================= */}
       <section
         id="remediation"
-        className="w-full scroll-mt-36 border-t border-white/10 bg-black py-24 lg:py-28"
+        className="w-full scroll-mt-36 border-t border-white/10 bg-black py-16 sm:py-24 lg:py-28"
       >
-        <div className="w-full px-6 sm:px-10 lg:px-16">
+        <div className="w-full px-4 sm:px-8 lg:px-16">
           <div className="reveal-up max-w-4xl">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
               06 · Closed-Loop AST Remediation
             </p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
               Syntax-validated patches with atomic rollback.
             </h2>
-            <p className="mt-4 text-base text-zinc-400">
+            <p className="mt-4 text-sm leading-relaxed text-zinc-400 sm:text-base">
               Every patch generated by <code className="font-sans text-zinc-200">sentinelai fix</code> is parsed with <code className="font-sans text-zinc-200">ast.parse</code> before touching disk, backed up in <code className="font-sans text-zinc-200">.sentinelai_backups/</code>, and automatically re-scanned to verify no regressions. Interactive prompt keys: <code className="font-sans text-zinc-200">[y]es</code>, <code className="font-sans text-zinc-200">[n]o/[s]kip</code>, <code className="font-sans text-zinc-200">[a]ll</code>, <code className="font-sans text-zinc-200">[d]etails</code>, <code className="font-sans text-zinc-200">[q]uit</code>.
             </p>
           </div>
 
-          <div className="reveal-up mt-12 grid gap-x-10 divide-y divide-white/10 border-y border-white/10 sm:grid-cols-2">
+          <div className="reveal-up mt-10 grid gap-x-10 divide-y divide-white/10 border-y border-white/10 sm:mt-12 md:grid-cols-2">
             {VULNERABILITY_CLASSES.map((v) => (
               <div
                 key={v.cwe}
-                className="flex flex-col justify-between gap-1 py-5 sm:flex-row sm:items-baseline sm:gap-4"
+                className="flex flex-col justify-between gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-4 sm:py-5"
               >
                 <div>
                   <span className="text-xs font-semibold text-[#2997FF]">{v.cwe}</span>
@@ -678,30 +686,30 @@ export default function ProductsApp() {
       {/* ================= CHAPTER 07: EXIT CODES, AI ENV VARS & CI/CD ================= */}
       <section
         id="ci"
-        className="w-full scroll-mt-36 border-t border-white/10 bg-[#030508] py-24 lg:py-28"
+        className="w-full scroll-mt-36 border-t border-white/10 bg-[#030508] py-16 sm:py-24 lg:py-28"
       >
-        <div className="w-full px-6 sm:px-10 lg:px-16">
+        <div className="w-full px-4 sm:px-8 lg:px-16">
           <div className="reveal-up max-w-4xl">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
               07 · Exit Codes, Environment Variables &amp; CI/CD
             </p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
               Built for deterministic pipelines.
             </h2>
           </div>
 
-          <div className="reveal-up mt-14 grid gap-14 lg:grid-cols-12">
+          <div className="reveal-up mt-10 grid gap-12 sm:mt-14 lg:grid-cols-12 lg:gap-14">
             {/* Exit Codes */}
-            <div className="lg:col-span-6">
-              <h3 className="text-xl font-semibold text-white">Named Exit Codes</h3>
+            <div className="min-w-0 lg:col-span-6">
+              <h3 className="text-lg font-semibold text-white sm:text-xl">Named Exit Codes</h3>
               <p className="mt-1.5 text-sm text-zinc-500">
                 CI pipelines branch cleanly between security policy failures (1) and tool/input errors (2, 3, 4).
               </p>
-              <div className="mt-6 divide-y divide-white/10 border-y border-white/10">
+              <div className="mt-5 divide-y divide-white/10 border-y border-white/10 sm:mt-6">
                 {EXIT_CODES.map((ec) => (
                   <div
                     key={ec.code}
-                    className="grid gap-2 py-4 sm:grid-cols-12 sm:items-baseline"
+                    className="grid gap-1.5 py-4 sm:grid-cols-12 sm:items-baseline sm:gap-2"
                   >
                     <span className="text-base font-semibold text-[#2997FF] sm:col-span-1">
                       {ec.code}
@@ -718,16 +726,16 @@ export default function ProductsApp() {
             </div>
 
             {/* AI Environment Variables */}
-            <div className="lg:col-span-6 lg:border-l lg:border-white/10 lg:pl-12">
-              <h3 className="text-xl font-semibold text-white">AI Configuration Variables</h3>
+            <div className="min-w-0 lg:col-span-6 lg:border-l lg:border-white/10 lg:pl-12">
+              <h3 className="text-lg font-semibold text-white sm:text-xl">AI Configuration Variables</h3>
               <p className="mt-1.5 text-sm text-zinc-500">
                 Optional tuning for Ollama RAG retrieval, verification, and timeouts (defaults match published benchmarks).
               </p>
-              <div className="mt-6 divide-y divide-white/10 border-y border-white/10">
+              <div className="mt-5 divide-y divide-white/10 border-y border-white/10 sm:mt-6">
                 {AI_ENV_VARS.map((env) => (
                   <div key={env.variable} className="py-4">
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <code className="font-sans text-xs font-semibold text-[#2997FF]">
+                      <code className="break-all font-sans text-xs font-semibold text-[#2997FF]">
                         {env.variable}
                       </code>
                       <span className="text-xs font-medium text-zinc-300">

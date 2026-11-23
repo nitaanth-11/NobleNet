@@ -27,7 +27,16 @@ export function HeroTechCanvas() {
     scene.fog = new THREE.FogExp2(0x000000, 0.055);
 
     const camera = new THREE.PerspectiveCamera(44, width / height, 0.1, 120);
-    camera.position.set(0, 6.4, 9.6);
+    const updateCameraForViewport = (w: number, h: number) => {
+      const aspect = Math.max(w / Math.max(h, 1), 0.45);
+      camera.aspect = aspect;
+      // Pull camera back smoothly on portrait phones & tablets so full PCB & CPU stay framed
+      const zScale = aspect < 1 ? Math.min(1.55, 1.05 / aspect) : 1;
+      camera.position.set(0, 6.4 * Math.min(zScale, 1.25), 9.6 * zScale);
+      camera.fov = w < 640 ? 50 : 44;
+      camera.updateProjectionMatrix();
+    };
+    updateCameraForViewport(width, height);
     camera.lookAt(0, -0.4, 0);
 
     const renderer = new THREE.WebGLRenderer({
@@ -266,11 +275,12 @@ export function HeroTechCanvas() {
       if (!container) return;
       const w = container.clientWidth || window.innerWidth;
       const h = container.clientHeight || window.innerHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
+      updateCameraForViewport(w, h);
       renderer.setSize(w, h);
     };
     window.addEventListener('resize', onResize);
+    const resizeObserver = new ResizeObserver(onResize);
+    resizeObserver.observe(container);
 
     const clock = new THREE.Clock();
     const tmpPos = new THREE.Vector3();
@@ -319,6 +329,7 @@ export function HeroTechCanvas() {
       cancelAnimationFrame(rafId);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('resize', onResize);
+      resizeObserver.disconnect();
       scene.traverse((obj) => {
         if (obj instanceof THREE.Mesh || obj instanceof THREE.Line) {
           obj.geometry.dispose();

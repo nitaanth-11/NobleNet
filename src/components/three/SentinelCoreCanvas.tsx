@@ -29,8 +29,15 @@ export function SentinelCoreCanvas({ mode }: SentinelCoreCanvasProps) {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 120);
-    camera.position.set(0, 4.6, 7.6);
-    camera.lookAt(0, 0, 0);
+    const updateCamera = (w: number, h: number) => {
+      const aspect = Math.max(w / Math.max(h, 1), 0.55);
+      camera.aspect = aspect;
+      const zScale = aspect < 1.15 ? Math.min(1.55, 1.2 / aspect) : 1;
+      camera.position.set(0, 4.6 * Math.min(zScale, 1.25), 7.6 * zScale);
+      camera.lookAt(0, 0, 0);
+      camera.updateProjectionMatrix();
+    };
+    updateCamera(width, height);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -196,13 +203,14 @@ export function SentinelCoreCanvas({ mode }: SentinelCoreCanvasProps) {
 
     const onResize = () => {
       if (!container) return;
-      const w = container.clientWidth || 720;
-      const h = container.clientHeight || 560;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
+      const w = container.clientWidth || 360;
+      const h = container.clientHeight || 320;
+      updateCamera(w, h);
       renderer.setSize(w, h);
     };
     window.addEventListener('resize', onResize);
+    const resizeObserver = new ResizeObserver(onResize);
+    resizeObserver.observe(container);
 
     const clock = new THREE.Clock();
     let rafId = 0;
@@ -241,6 +249,7 @@ export function SentinelCoreCanvas({ mode }: SentinelCoreCanvasProps) {
       cancelAnimationFrame(rafId);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('resize', onResize);
+      resizeObserver.disconnect();
       scene.traverse((obj) => {
         if (obj instanceof THREE.Mesh || obj instanceof THREE.Line || obj instanceof THREE.LineSegments) {
           obj.geometry.dispose();
@@ -258,7 +267,7 @@ export function SentinelCoreCanvas({ mode }: SentinelCoreCanvasProps) {
   return (
     <div
       ref={containerRef}
-      className="h-full w-full min-h-[420px] sm:min-h-[520px] lg:min-h-[580px]"
+      className="h-[300px] w-full touch-pan-y sm:h-[400px] md:h-[460px] lg:h-[520px]"
       aria-label="Sentinel AI 3D Network Topology and Threat Operations Radar"
     />
   );

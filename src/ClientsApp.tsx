@@ -14,13 +14,13 @@ export default function ClientsApp() {
       <Navbar page="clients" />
 
       {/* ================= FULL-WIDTH EDITORIAL HEADER ================= */}
-      <section className="relative w-full overflow-hidden border-b border-white/10 bg-black pt-32 pb-20 lg:pt-40 lg:pb-24">
+      <section className="relative w-full overflow-hidden border-b border-white/10 bg-black pt-28 pb-14 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/3 top-0 h-[400px] w-[640px] rounded-full bg-[#2997FF]/10 blur-[140px]"
+          className="pointer-events-none absolute left-1/3 top-0 h-[360px] w-[560px] rounded-full bg-[#2997FF]/10 blur-[140px]"
         />
 
-        <div className="relative w-full px-6 sm:px-10 lg:px-16">
+        <div className="relative w-full px-4 sm:px-8 lg:px-16">
           <a
             href="./index.html"
             className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.14em] text-zinc-500 transition hover:text-white"
@@ -29,16 +29,16 @@ export default function ClientsApp() {
             <span>Back to NobleNet</span>
           </a>
 
-          <div className="mt-8 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+          <div className="mt-6 flex flex-col justify-between gap-6 sm:mt-8 lg:flex-row lg:items-end lg:gap-8">
             <div className="max-w-4xl">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
                 What Clients Say
               </p>
-              <h1 className="mt-4 text-5xl font-semibold leading-[1.03] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
+              <h1 className="mt-3 text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:mt-4 sm:text-6xl lg:text-7xl">
                 Trusted by leaders across industries.
               </h1>
             </div>
-            <p className="max-w-sm text-base text-zinc-400">
+            <p className="max-w-sm text-sm text-zinc-400 sm:text-base">
               Firm websites, e-commerce platforms, and digital initiatives engineered by NobleNet.
             </p>
           </div>
@@ -52,31 +52,31 @@ export default function ClientsApp() {
             <article
               id={item.id}
               key={item.id}
-              className="reveal-up w-full scroll-mt-24 px-6 py-20 transition-colors hover:bg-white/[0.015] sm:px-10 lg:px-16 lg:py-24"
+              className="reveal-up w-full scroll-mt-24 px-4 py-14 transition-colors hover:bg-white/[0.015] sm:px-8 sm:py-20 lg:px-16 lg:py-24"
             >
-              <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
+              <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-10">
                 {/* Client Identity */}
-                <div className="lg:col-span-4">
+                <div className="min-w-0 lg:col-span-4">
                   <span className="text-xs font-semibold tracking-[0.14em] text-[#2997FF]">
                     {item.index}
                   </span>
-                  <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl">
+                  <h2 className="mt-2.5 text-2xl font-semibold tracking-[-0.035em] text-white sm:mt-3 sm:text-3xl lg:text-4xl">
                     {item.client}
                   </h2>
-                  <p className="mt-2 text-xs font-medium uppercase tracking-[0.12em] text-zinc-500">
+                  <p className="mt-1.5 text-xs font-medium uppercase tracking-[0.12em] text-zinc-500">
                     {item.sector}
                   </p>
-                  <p className="mt-4 text-sm font-medium text-zinc-300">
+                  <p className="mt-3.5 text-sm font-medium text-zinc-300">
                     Delivered: {item.engagement}
                   </p>
                 </div>
 
                 {/* Large Clean Pull Quote + Outcome */}
-                <div className="lg:col-span-8 lg:border-l lg:border-white/10 lg:pl-12">
-                  <blockquote className="text-2xl font-normal leading-[1.35] tracking-[-0.025em] text-zinc-100 sm:text-3xl lg:text-4xl">
+                <div className="min-w-0 lg:col-span-8 lg:border-l lg:border-white/10 lg:pl-12">
+                  <blockquote className="text-xl font-normal leading-[1.4] tracking-[-0.02em] text-zinc-100 sm:text-2xl md:text-3xl lg:text-4xl lg:leading-[1.35]">
                     “{item.quote}”
                   </blockquote>
-                  <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-white/10 pt-5">
+                  <div className="mt-6 flex flex-wrap items-center gap-2.5 border-t border-white/10 pt-5 sm:mt-8 sm:gap-3">
                     <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2997FF]">
                       Outcome
                     </span>
@@ -91,19 +91,19 @@ export default function ClientsApp() {
       </section>
 
       {/* ================= FULL-WIDTH CLOSING CTA ================= */}
-      <section className="w-full border-t border-white/10 bg-black py-24">
-        <div className="reveal-up flex w-full flex-col items-start justify-between gap-8 px-6 sm:px-10 lg:flex-row lg:items-center lg:px-16">
+      <section className="w-full border-t border-white/10 bg-black py-16 sm:py-24">
+        <div className="reveal-up flex w-full flex-col items-start justify-between gap-6 px-4 sm:px-8 lg:flex-row lg:items-center lg:gap-8 lg:px-16">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
               Start a Conversation
             </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-5xl">
+            <h2 className="mt-2.5 text-2xl font-semibold tracking-[-0.035em] text-white sm:mt-3 sm:text-4xl lg:text-5xl">
               Build your next platform with NobleNet.
             </h2>
           </div>
           <a
             href={`mailto:${COMPANY_INFO.email}?subject=Project%20Inquiry%20—%20NobleNet`}
-            className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-black transition hover:bg-zinc-200"
+            className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-black transition hover:bg-zinc-200 sm:w-auto"
           >
             <span>Contact Our Team</span>
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

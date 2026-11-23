@@ -17,31 +17,31 @@ export function ContactFooter() {
       className="w-full border-t border-white/10 bg-[#04060A] text-[#F5F5F7]"
     >
       {/* Full-width Architectural Contact + Interactive Map Section */}
-      <div className="w-full px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
+      <div className="w-full px-4 py-14 sm:px-8 sm:py-20 lg:px-16 lg:py-24">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-12">
           {/* Brand + Email + Address */}
-          <div className="lg:col-span-5">
+          <div className="min-w-0 lg:col-span-5">
             <img
               src="/assets/noblenet-logo-darkbg.png"
               alt={COMPANY_INFO.name}
-              className="h-24 w-auto object-contain"
+              className="h-20 w-auto object-contain sm:h-24"
             />
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-zinc-400">
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-zinc-400">
               {COMPANY_INFO.tagline}
             </p>
 
             {/* Email Block */}
-            <div className="mt-10 border-t border-white/10 pt-7">
+            <div className="mt-8 border-t border-white/10 pt-6 sm:mt-10 sm:pt-7">
               <p className="text-xs font-medium uppercase tracking-[0.14em] text-zinc-500">
                 Email
               </p>
               <a
                 href={`mailto:${COMPANY_INFO.email}`}
-                className="mt-2 block break-all text-xl font-medium tracking-[-0.02em] text-white transition hover:text-[#2997FF] sm:text-2xl"
+                className="mt-2 block break-all text-lg font-medium tracking-[-0.02em] text-white transition hover:text-[#2997FF] sm:text-xl md:text-2xl"
               >
                 {COMPANY_INFO.email}
               </a>
-              <div className="mt-3 flex items-center gap-4">
+              <div className="mt-3 flex flex-wrap items-center gap-4">
                 <button
                   type="button"
                   onClick={copyEmail}
@@ -71,11 +71,11 @@ export function ContactFooter() {
             </div>
 
             {/* Address Block */}
-            <div className="mt-8 border-t border-white/10 pt-7">
+            <div className="mt-7 border-t border-white/10 pt-6 sm:mt-8 sm:pt-7">
               <p className="text-xs font-medium uppercase tracking-[0.14em] text-zinc-500">
                 Location
               </p>
-              <p className="mt-2 text-lg font-medium leading-snug tracking-[-0.015em] text-white sm:text-xl">
+              <p className="mt-2 text-base font-medium leading-snug tracking-[-0.015em] text-white sm:text-lg md:text-xl">
                 {COMPANY_INFO.location.addressLine}
               </p>
               <a
@@ -84,17 +84,17 @@ export function ContactFooter() {
                 rel="noreferrer"
                 className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-[#2997FF] transition hover:text-white"
               >
-                <MapPin className="h-3.5 w-3.5" />
+                <MapPin className="h-3.5 w-3.5 shrink-0" />
                 <span>Open directions in Google Maps</span>
-                <ArrowUpRight className="h-3.5 w-3.5" />
+                <ArrowUpRight className="h-3.5 w-3.5 shrink-0" />
               </a>
             </div>
           </div>
 
           {/* Embedded Interactive Map to G/17A Express Zone, Malad East, Mumbai */}
-          <div className="lg:col-span-7 lg:pl-6">
+          <div className="min-w-0 lg:col-span-7 lg:pl-6">
             <div className="overflow-hidden border border-white/10 bg-[#070B12]">
-              <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 px-4 py-3 sm:px-5">
                 <span className="text-xs font-medium text-zinc-300">
                   Express Zone, Malad East, Mumbai
                 </span>
@@ -108,7 +108,7 @@ export function ContactFooter() {
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </a>
               </div>
-              <div className="relative h-[320px] w-full sm:h-[380px]">
+              <div className="relative h-[250px] w-full sm:h-[320px] lg:h-[380px]">
                 <iframe
                   title="NobleNet Software Technologies — G/17A Express Zone, Malad East, Mumbai"
                   src={COMPANY_INFO.location.mapsEmbedUrl}
@@ -123,11 +123,11 @@ export function ContactFooter() {
         </div>
 
         {/* Bottom Hairline Strip */}
-        <div className="mt-16 flex flex-col justify-between gap-4 border-t border-white/10 pt-8 text-xs text-zinc-500 sm:flex-row sm:items-center">
+        <div className="mt-12 flex flex-col justify-between gap-4 border-t border-white/10 pt-7 text-xs text-zinc-500 sm:mt-16 sm:flex-row sm:items-center sm:pt-8">
           <p>
             © {COMPANY_INFO.year} {COMPANY_INFO.name}. All rights reserved.
           </p>
-          <div className="flex flex-wrap items-center gap-7">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2.5">
             <a href="./index.html" className="transition hover:text-white">
               Home
             </a>

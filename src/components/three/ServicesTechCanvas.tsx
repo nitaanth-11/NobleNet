@@ -29,8 +29,15 @@ export function ServicesTechCanvas({ activeIndex }: ServicesTechCanvasProps) {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-    camera.position.set(0, 1.5, 8.2);
-    camera.lookAt(0, 0, 0);
+    const updateCamera = (w: number, h: number) => {
+      const aspect = Math.max(w / Math.max(h, 1), 0.55);
+      camera.aspect = aspect;
+      const zScale = aspect < 1.1 ? Math.min(1.48, 1.15 / aspect) : 1;
+      camera.position.set(0, 1.5 * Math.min(zScale, 1.2), 8.2 * zScale);
+      camera.lookAt(0, 0, 0);
+      camera.updateProjectionMatrix();
+    };
+    updateCamera(width, height);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -415,13 +422,14 @@ export function ServicesTechCanvas({ activeIndex }: ServicesTechCanvasProps) {
 
     const onResize = () => {
       if (!container) return;
-      const w = container.clientWidth || 680;
-      const h = container.clientHeight || 540;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
+      const w = container.clientWidth || 360;
+      const h = container.clientHeight || 320;
+      updateCamera(w, h);
       renderer.setSize(w, h);
     };
     window.addEventListener('resize', onResize);
+    const resizeObserver = new ResizeObserver(onResize);
+    resizeObserver.observe(container);
 
     const clock = new THREE.Clock();
     let rafId = 0;
@@ -519,6 +527,7 @@ export function ServicesTechCanvas({ activeIndex }: ServicesTechCanvasProps) {
       cancelAnimationFrame(rafId);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('resize', onResize);
+      resizeObserver.disconnect();
       scene.traverse((obj) => {
         if (obj instanceof THREE.Mesh || obj instanceof THREE.Line || obj instanceof THREE.LineSegments) {
           obj.geometry.dispose();
@@ -536,7 +545,7 @@ export function ServicesTechCanvas({ activeIndex }: ServicesTechCanvasProps) {
   return (
     <div
       ref={containerRef}
-      className="h-full w-full min-h-[420px] sm:min-h-[520px] lg:min-h-[580px]"
+      className="h-[300px] w-full touch-pan-y sm:h-[400px] md:h-[460px] lg:h-[520px]"
       aria-label="Interactive 3D Technical Service Architecture"
     />
   );

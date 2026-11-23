@@ -19,7 +19,14 @@ export function Logo3DCanvas() {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
-    camera.position.set(0, 0, 7.2);
+    const updateCamera = (w: number, h: number) => {
+      const aspect = Math.max(w / Math.max(h, 1), 0.55);
+      camera.aspect = aspect;
+      const dist = aspect < 1 ? 7.2 / Math.max(aspect, 0.72) : w < 640 ? 8.2 : 7.2;
+      camera.position.set(0, 0, Math.min(dist, 10.2));
+      camera.updateProjectionMatrix();
+    };
+    updateCamera(width, height);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -223,13 +230,14 @@ export function Logo3DCanvas() {
 
     const onResize = () => {
       if (!container) return;
-      const w = container.clientWidth || 620;
-      const h = container.clientHeight || 520;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
+      const w = container.clientWidth || 340;
+      const h = container.clientHeight || 340;
+      updateCamera(w, h);
       renderer.setSize(w, h);
     };
     window.addEventListener('resize', onResize);
+    const resizeObserver = new ResizeObserver(onResize);
+    resizeObserver.observe(container);
 
     const clock = new THREE.Clock();
     let rafId = 0;
@@ -259,6 +267,7 @@ export function Logo3DCanvas() {
       cancelAnimationFrame(rafId);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('resize', onResize);
+      resizeObserver.disconnect();
       logoTex.dispose();
       scene.traverse((obj) => {
         if (obj instanceof THREE.Mesh || obj instanceof THREE.Line || obj instanceof THREE.LineSegments) {
@@ -277,7 +286,7 @@ export function Logo3DCanvas() {
   return (
     <div
       ref={containerRef}
-      className="h-full w-full min-h-[420px] sm:min-h-[500px] lg:min-h-[560px]"
+      className="h-[320px] w-full touch-pan-y sm:h-[420px] md:h-[480px] lg:h-[540px]"
       aria-label="3D NobleNet Software Technologies Logo"
     />
   );
