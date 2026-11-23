@@ -53,26 +53,18 @@ export function Navbar({ page }: NavbarProps) {
           : 'border-b border-white/[0.04] bg-black/35 backdrop-blur-md'
       }`}
     >
-      <div className="flex w-full items-center justify-between px-6 py-5 sm:px-10 sm:py-6 lg:px-16">
-        {/* Top Brand Logo — Unified Inter font */}
+      <div className="flex w-full items-center justify-between px-6 py-3 sm:px-10 sm:py-3.5 lg:px-16">
+        {/* Official Full NobleNet Logo */}
         <a
           href="./index.html"
-          className="group flex items-center gap-4 focus:outline-none"
+          className="group flex shrink-0 items-center focus:outline-none"
           aria-label={COMPANY_INFO.name}
         >
           <img
-            src="/assets/noblenet-emblem.png"
-            alt="NobleNet Logo"
-            className="h-12 w-12 object-contain transition-transform duration-500 group-hover:scale-105 sm:h-14 sm:w-14"
+            src="/assets/noblenet-logo-darkbg.png"
+            alt={COMPANY_INFO.name}
+            className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-16 lg:h-[68px]"
           />
-          <div className="leading-none">
-            <span className="block text-lg font-semibold tracking-[-0.025em] text-white sm:text-xl">
-              NobleNet
-            </span>
-            <span className="mt-1.5 block text-xs font-medium tracking-[0.03em] text-zinc-400 sm:text-[13px]">
-              Software Technologies
-            </span>
-          </div>
         </a>
 
         {/* Desktop Links */}
