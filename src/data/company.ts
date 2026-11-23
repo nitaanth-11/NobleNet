@@ -3,6 +3,7 @@ export interface ServiceItem {
   index: string;
   title: string;
   tagline: string;
+  brief: string;
   spec: string;
   modelLabel: string;
 }
@@ -46,12 +47,17 @@ export const COMPANY_INFO = {
   name: 'NobleNet Software Technologies',
   shortName: 'NobleNet',
   tagline: 'Enterprise software, DevSecOps tooling, and AI-powered engineering.',
-  email: 'contact@noblenetsoftware.com',
+  email: 'noblenettechnologies@gmail.com',
   location: {
-    city: 'Hyderabad, Telangana',
+    city: 'Malad East, Mumbai',
+    state: 'Maharashtra 400063',
     country: 'India',
-    addressLine: 'HITEC City Tech Corridor, Hyderabad — 500081',
-    timezone: 'IST (UTC+5:30) • Global Engineering',
+    addressLine: 'G/17A Express Zone, Malad East, Mumbai, Maharashtra 400063',
+    mapsUrl:
+      'https://www.google.com/maps/search/?api=1&query=G%2F17A+Express+Zone+Malad+East+Mumbai+Maharashtra+400063',
+    mapsEmbedUrl:
+      'https://maps.google.com/maps?q=G%2F17A%20Express%20Zone%2C%20Malad%20East%2C%20Mumbai%2C%20Maharashtra%20400063&t=&z=16&ie=UTF8&iwloc=&output=embed',
+    timezone: 'IST (UTC+5:30) • Mumbai, India',
   },
   year: new Date().getFullYear(),
 };
@@ -76,8 +82,10 @@ export const SERVICES: ServiceItem[] = [
   {
     id: 0,
     index: '01',
-    title: 'Custom Software & Platforms',
-    tagline: 'Multi-tier web platforms, microservices, and resilient APIs.',
+    title: 'Custom Web & E-Commerce',
+    tagline: 'High-speed firm websites, full-stack platforms, and e-commerce.',
+    brief:
+      'Responsive business websites, custom storefronts, payment integrations, and scalable APIs engineered for conversion and reliability.',
     spec: 'Frontend  →  API Gateway  →  Distributed DB',
     modelLabel: '3D Multi-Tier Application Stack',
   },
@@ -85,7 +93,9 @@ export const SERVICES: ServiceItem[] = [
     id: 1,
     index: '02',
     title: 'AI & Autonomous Systems',
-    tagline: 'Grounded multi-agent LLM pipelines, code intelligence, and automation.',
+    tagline: 'Grounded multi-agent LLM pipelines and workflow automation.',
+    brief:
+      'Production LLM orchestration, RAG reasoning engines, and intelligent automation with strict privacy and verification controls.',
     spec: 'Input Tensor  →  Hidden Weights  →  Inference',
     modelLabel: '3D Deep Neural Network Graph',
   },
@@ -93,7 +103,9 @@ export const SERVICES: ServiceItem[] = [
     id: 2,
     index: '03',
     title: 'Cloud & DevOps Infrastructure',
-    tagline: 'Reproducible Docker pipelines, Kubernetes clusters, and CI/CD security gates.',
+    tagline: 'Dockerized deployments, cloud scaling, and CI/CD pipelines.',
+    brief:
+      'Reproducible container infrastructure, automated release pipelines, observability, and high-availability cloud architecture.',
     spec: 'Rack Cluster  →  Fiber Uplink  →  Edge Nodes',
     modelLabel: '3D Enterprise Data-Center Cluster',
   },
@@ -101,7 +113,9 @@ export const SERVICES: ServiceItem[] = [
     id: 3,
     index: '04',
     title: 'DevSecOps & Security Auditing',
-    tagline: 'SAST, secret detection, SCA dependency audits, and SARIF compliance.',
+    tagline: 'SAST, secret detection, dependency audits, and SARIF gates.',
+    brief:
+      'Automated code security pipelines, vulnerability correlation, AST-validated remediation, and continuous compliance reporting.',
     spec: 'Traffic Stream  →  Firewall Gate  →  Vault',
     modelLabel: '3D Packet-Inspection Firewall',
   },
@@ -341,39 +355,39 @@ export const CLIENT_TESTIMONIALS: ClientTestimonial[] = [
     index: '01',
     client: 'Adv. Jyoti',
     sector: 'Legal Practice & Advisory',
-    engagement: 'Digital Presence & Case Workflow Automation',
+    engagement: 'Law Firm Website',
     quote:
-      'NobleNet delivered a refined, dependable digital platform with remarkable speed and clarity — every technical detail handled with absolute professionalism.',
-    outcome: 'Streamlined client intake & secure digital records',
+      'NobleNet built our firm website with clarity, authority, and precision — giving our clients an effortless way to understand our practice and reach us.',
+    outcome: 'Custom law firm website built for speed, clarity, and client trust',
   },
   {
     id: 'entrust-legal',
     index: '02',
     client: 'Entrust Legal Services',
-    sector: 'Corporate & Legal Services',
-    engagement: 'Enterprise Web Architecture & Secure Client Portal',
+    sector: 'Corporate & Legal Firm',
+    engagement: 'Law Firm Website',
     quote:
-      'Precision, confidentiality, and clean engineering. NobleNet transformed how our legal team collaborates with clients online.',
-    outcome: 'Encrypted document exchange & zero-downtime reliability',
+      'Clean design, dependable engineering, and sharp attention to detail. NobleNet delivered a firm website that truly represents our legal standards.',
+    outcome: 'Authoritative corporate legal website with seamless client inquiries',
   },
   {
     id: 'maison-momento',
     index: '03',
     client: 'Maison Momento',
-    sector: 'Luxury & Bespoke Experiences',
-    engagement: 'Flagship Brand Platform & Interactive Web Engineering',
+    sector: 'Retail & Bespoke Commerce',
+    engagement: 'E-Commerce Platform',
     quote:
-      'They matched our aesthetic standard down to the last pixel while keeping performance effortless across every device.',
-    outcome: 'Elevated digital storefront & sub-second load speeds',
+      'NobleNet engineered our complete e-commerce platform from storefront to checkout — matching our brand aesthetic while keeping shopping fast and effortless.',
+    outcome: 'End-to-end e-commerce platform built for performance and conversion',
   },
   {
     id: 'emerald-green',
     index: '04',
     client: 'Emerald Green Environment Trust',
     sector: 'Environmental & Sustainability Trust',
-    engagement: 'Impact Portal & Outreach Infrastructure',
+    engagement: 'Digital Impact & Outreach Website',
     quote:
-      'NobleNet brought modern technology to our environmental mission — making our initiatives visible, transparent, and easy to support.',
-    outcome: 'Unified public impact hub & scalable community reach',
+      'NobleNet brought modern web engineering to our environmental mission — making our initiatives visible, transparent, and easy for supporters to explore.',
+    outcome: 'Public impact web platform supporting sustainability awareness and outreach',
   },
 ];

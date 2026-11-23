@@ -23,7 +23,7 @@ export default function ClientsApp() {
         <div className="relative w-full px-6 sm:px-10 lg:px-16">
           <a
             href="./index.html"
-            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-zinc-500 transition hover:text-white"
+            className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.14em] text-zinc-500 transition hover:text-white"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             <span>Back to NobleNet</span>
@@ -31,7 +31,7 @@ export default function ClientsApp() {
 
           <div className="mt-8 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <div className="max-w-4xl">
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#2997FF]">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
                 What Clients Say
               </p>
               <h1 className="mt-4 text-5xl font-semibold leading-[1.03] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
@@ -39,31 +39,36 @@ export default function ClientsApp() {
               </h1>
             </div>
             <p className="max-w-sm text-base text-zinc-400">
-              Direct perspectives from legal, luxury, and environmental organizations powered by NobleNet.
+              Firm websites, e-commerce platforms, and digital initiatives engineered by NobleNet.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ================= FULL-WIDTH CLIENT TESTIMONIAL BANDS (Zero Small Cards) ================= */}
+      {/* ================= FULL-WIDTH CLIENT TESTIMONIAL BANDS ================= */}
       <section className="w-full bg-[#030508]">
         <div className="w-full divide-y divide-white/10">
           {CLIENT_TESTIMONIALS.map((item) => (
             <article
+              id={item.id}
               key={item.id}
-              className="reveal-up w-full px-6 py-20 transition-colors hover:bg-white/[0.015] sm:px-10 lg:px-16 lg:py-24"
+              className="reveal-up w-full scroll-mt-24 px-6 py-20 transition-colors hover:bg-white/[0.015] sm:px-10 lg:px-16 lg:py-24"
             >
               <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
                 {/* Client Identity */}
                 <div className="lg:col-span-4">
-                  <span className="font-mono text-xs text-[#2997FF]">{item.index}</span>
+                  <span className="text-xs font-semibold tracking-[0.14em] text-[#2997FF]">
+                    {item.index}
+                  </span>
                   <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl">
                     {item.client}
                   </h2>
-                  <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500">
+                  <p className="mt-2 text-xs font-medium uppercase tracking-[0.12em] text-zinc-500">
                     {item.sector}
                   </p>
-                  <p className="mt-5 text-sm text-zinc-400">{item.engagement}</p>
+                  <p className="mt-4 text-sm font-medium text-zinc-300">
+                    Delivered: {item.engagement}
+                  </p>
                 </div>
 
                 {/* Large Clean Pull Quote + Outcome */}
@@ -72,8 +77,8 @@ export default function ClientsApp() {
                     “{item.quote}”
                   </blockquote>
                   <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-white/10 pt-5">
-                    <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#2997FF]">
-                      Impact
+                    <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2997FF]">
+                      Outcome
                     </span>
                     <span className="text-zinc-700">—</span>
                     <span className="text-sm text-zinc-400">{item.outcome}</span>
@@ -89,11 +94,11 @@ export default function ClientsApp() {
       <section className="w-full border-t border-white/10 bg-black py-24">
         <div className="reveal-up flex w-full flex-col items-start justify-between gap-8 px-6 sm:px-10 lg:flex-row lg:items-center lg:px-16">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-zinc-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
               Start a Conversation
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-5xl">
-              Build your next system with NobleNet.
+              Build your next platform with NobleNet.
             </h2>
           </div>
           <a

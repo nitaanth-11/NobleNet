@@ -54,7 +54,7 @@ export function Navbar({ page }: NavbarProps) {
       }`}
     >
       <div className="flex w-full items-center justify-between px-6 py-4 sm:px-10 lg:px-16">
-        {/* Top Brand Logo */}
+        {/* Top Brand Logo — Unified Inter font */}
         <a
           href="./index.html"
           className="group flex items-center gap-3.5 focus:outline-none"
@@ -69,7 +69,7 @@ export function Navbar({ page }: NavbarProps) {
             <span className="block text-[15px] font-semibold tracking-[-0.02em] text-white">
               NobleNet
             </span>
-            <span className="mt-1 block font-mono text-[10px] tracking-[0.16em] uppercase text-zinc-400">
+            <span className="mt-1 block text-[11px] font-medium tracking-[0.04em] text-zinc-400">
               Software Technologies
             </span>
           </div>
@@ -104,7 +104,7 @@ export function Navbar({ page }: NavbarProps) {
               href="./products.html"
               className="group inline-flex items-center gap-1.5 rounded-full bg-[#2997FF] px-4 py-1.5 text-[13px] font-medium text-white transition hover:bg-[#1C88F0]"
             >
-              <span>Sentinel AI</span>
+              <span>SentinelAI</span>
               <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
           )}
@@ -140,7 +140,7 @@ export function Navbar({ page }: NavbarProps) {
             href="./products.html"
             className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#2997FF] px-5 py-2.5 text-sm font-medium text-white"
           >
-            <span>Open Sentinel AI</span>
+            <span>Open SentinelAI</span>
             <ArrowUpRight className="h-4 w-4" />
           </a>
         </div>

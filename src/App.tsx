@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ArrowUpRight, ArrowRight, ChevronDown } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { ContactFooter } from './components/Footer';
 import { HeroTechCanvas } from './components/three/HeroTechCanvas';
@@ -14,13 +14,31 @@ export default function App() {
   useRevealObserver();
 
   const [activeService, setActiveService] = useState(0);
+  const [activeReview, setActiveReview] = useState(0);
+  const [carouselPaused, setCarouselPaused] = useState(false);
+
+  // Smooth auto-advance for the Client Reviews Carousel
+  useEffect(() => {
+    if (carouselPaused) return;
+    const timer = window.setInterval(() => {
+      setActiveReview((prev) => (prev + 1) % CLIENT_TESTIMONIALS.length);
+    }, 5200);
+    return () => window.clearInterval(timer);
+  }, [carouselPaused]);
+
+  const currentReview = CLIENT_TESTIMONIALS[activeReview];
+
+  const prevReview = () =>
+    setActiveReview((prev) => (prev - 1 + CLIENT_TESTIMONIALS.length) % CLIENT_TESTIMONIALS.length);
+  const nextReview = () =>
+    setActiveReview((prev) => (prev + 1) % CLIENT_TESTIMONIALS.length);
 
   return (
     <div className="relative min-h-screen w-full bg-black text-[#F5F5F7]">
       <Navbar page="home" />
 
       {/* ================= FULL-BLEED HERO (Logo at Top + 3D Silicon PCB) ================= */}
-      <section className="relative flex min-h-screen w-full flex-col justify-between overflow-hidden bg-black pt-24">
+      <section className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden bg-black pt-24 pb-16">
         {/* Full-screen interactive 3D Silicon Microprocessor & PCB Canvas */}
         <div className="absolute inset-0 z-0 opacity-90">
           <HeroTechCanvas />
@@ -33,8 +51,7 @@ export default function App() {
         />
 
         {/* Centered Top Brand Logo + Flagship Display Headline */}
-        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-6 text-center sm:px-10">
-          {/* Official NobleNet Logo prominently featured at top */}
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-6 text-center sm:px-10">
           <img
             src="/assets/noblenet-logo-darkbg.png"
             alt="NobleNet Software Technologies"
@@ -46,8 +63,8 @@ export default function App() {
           </h1>
 
           <p className="mt-5 max-w-2xl text-base font-normal text-zinc-400 sm:text-xl">
-            Enterprise platforms, cloud infrastructure, neural systems — and{' '}
-            <span className="text-white font-medium">Sentinel AI</span>.
+            Enterprise platforms, e-commerce, cloud infrastructure, and{' '}
+            <span className="font-medium text-white">SentinelAI</span>.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
@@ -55,7 +72,7 @@ export default function App() {
               href="./products.html"
               className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-black transition hover:bg-zinc-200"
             >
-              <span>Explore Sentinel AI</span>
+              <span>Explore SentinelAI</span>
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
             <a
@@ -66,23 +83,9 @@ export default function App() {
             </a>
           </div>
         </div>
-
-        {/* Scroll Cue */}
-        <div className="relative z-10 flex w-full items-center justify-between border-t border-white/10 px-6 py-4 text-xs text-zinc-500 sm:px-10 lg:px-16">
-          <span className="font-mono uppercase tracking-[0.18em]">
-            3D Silicon &amp; Bus Telemetry
-          </span>
-          <a
-            href="#about"
-            className="inline-flex items-center gap-1.5 text-zinc-400 transition hover:text-white"
-          >
-            <span>Scroll</span>
-            <ChevronDown className="h-3.5 w-3.5 animate-bounce" />
-          </a>
-        </div>
       </section>
 
-      {/* ================= ABOUT US (Full-Width + 3D NobleNet Logo, Zero Small Cards) ================= */}
+      {/* ================= ABOUT US (Full-Width + 3D NobleNet Logo) ================= */}
       <section
         id="about"
         className="relative w-full border-t border-white/10 bg-[#030508] py-24 lg:py-32"
@@ -92,31 +95,28 @@ export default function App() {
             {/* Left: True 3D Interactive NobleNet Logo */}
             <div className="relative lg:col-span-6">
               <Logo3DCanvas />
-              <p className="mt-2 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-500">
-                Interactive 3D Identity — Move cursor to inspect depth
-              </p>
             </div>
 
-            {/* Right: Clean Full-Width Big Tech Typography (No Small Cards, No Big Paragraphs) */}
+            {/* Right: Clean Full-Width Typography */}
             <div className="lg:col-span-6 lg:pl-8">
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#2997FF]">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
                 About Us
               </p>
               <h2 className="mt-4 text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
                 Precision software. Zero bloat.
               </h2>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-400">
-                NobleNet Software Technologies builds mission-critical applications, cloud architecture, and autonomous AI systems for organizations that demand reliability.
+                NobleNet Software Technologies builds mission-critical websites, e-commerce platforms, cloud infrastructure, and AI-powered DevSecOps systems.
               </p>
 
-              {/* Hairline-divided Architectural Stats Strip (No Cards) */}
+              {/* Hairline-divided Architectural Stats Strip */}
               <div className="mt-12 grid grid-cols-2 gap-y-8 border-t border-white/10 pt-10 sm:grid-cols-4 sm:gap-x-8">
                 {ABOUT_METRICS.map((m) => (
                   <div key={m.label}>
                     <p className="text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
                       {m.value}
                     </p>
-                    <p className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-500">
+                    <p className="mt-1.5 text-xs font-medium text-zinc-500">
                       {m.label}
                     </p>
                   </div>
@@ -127,98 +127,99 @@ export default function App() {
         </div>
       </section>
 
-      {/* ================= SERVICES (Full-Width Widescreen + 4 Genuine 3D Technical Models) ================= */}
+      {/* ================= TECHNICAL SERVICES (HORIZONTAL FULL-WIDTH FORMAT + 3D STAGE) ================= */}
       <section
         id="services"
         className="relative w-full border-t border-white/10 bg-black py-24 lg:py-32"
       >
         <div className="w-full px-6 sm:px-10 lg:px-16">
-          <div className="reveal-up flex flex-col justify-between gap-4 border-b border-white/10 pb-10 sm:flex-row sm:items-end">
+          {/* Header + Active Service Brief */}
+          <div className="reveal-up flex flex-col justify-between gap-6 pb-10 lg:flex-row lg:items-end">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#2997FF]">
-                Services
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
+                Technical Services
               </p>
               <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
-                Technical capabilities.
+                Engineered end to end.
               </h2>
             </div>
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-zinc-500">
-              Select a service to inspect its 3D architecture
+            <p className="max-w-lg text-base text-zinc-400">
+              Select any capability below to inspect its live 3D technical architecture.
             </p>
           </div>
 
-          <div className="reveal-up mt-4 grid items-center gap-12 lg:grid-cols-12">
-            {/* Left: Full-bleed Hairline Rows (Zero Small Cards) */}
-            <div className="divide-y divide-white/10 lg:col-span-5">
-              {SERVICES.map((service, index) => {
-                const isActive = activeService === index;
-                return (
-                  <button
-                    key={service.id}
-                    type="button"
-                    onMouseEnter={() => setActiveService(index)}
-                    onFocus={() => setActiveService(index)}
-                    onClick={() => setActiveService(index)}
-                    className={`group flex w-full flex-col py-7 text-left transition-all ${
-                      isActive ? 'opacity-100' : 'opacity-50 hover:opacity-85'
+          {/* Horizontal 4-Column Full-Width Services Strip */}
+          <div className="reveal-up grid grid-cols-1 divide-y divide-white/10 border-y border-white/10 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
+            {SERVICES.map((service, index) => {
+              const isActive = activeService === index;
+              return (
+                <button
+                  key={service.id}
+                  type="button"
+                  onMouseEnter={() => setActiveService(index)}
+                  onFocus={() => setActiveService(index)}
+                  onClick={() => setActiveService(index)}
+                  className={`group relative flex flex-col justify-between px-1 py-8 text-left transition-all sm:px-6 lg:px-7 ${
+                    isActive
+                      ? 'bg-white/[0.04] opacity-100'
+                      : 'opacity-55 hover:bg-white/[0.02] hover:opacity-90'
+                  }`}
+                >
+                  {/* Active top accent bar */}
+                  <span
+                    className={`absolute inset-x-0 top-0 h-[2px] transition-opacity ${
+                      isActive ? 'bg-[#2997FF] opacity-100' : 'opacity-0'
                     }`}
-                  >
-                    <div className="flex items-baseline justify-between gap-4">
-                      <div className="flex items-baseline gap-4">
-                        <span
-                          className={`font-mono text-xs ${
-                            isActive ? 'text-[#2997FF]' : 'text-zinc-600'
-                          }`}
-                        >
-                          {service.index}
-                        </span>
-                        <h3 className="text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
-                          {service.title}
-                        </h3>
-                      </div>
+                  />
+
+                  <div>
+                    <div className="flex items-center justify-between">
                       <span
-                        className={`h-2 w-2 shrink-0 rounded-full transition-all ${
-                          isActive ? 'bg-[#2997FF] scale-125' : 'bg-zinc-700'
+                        className={`text-xs font-semibold tracking-[0.12em] ${
+                          isActive ? 'text-[#2997FF]' : 'text-zinc-500'
+                        }`}
+                      >
+                        {service.index}
+                      </span>
+                      <span
+                        className={`h-2 w-2 rounded-full transition-all ${
+                          isActive ? 'bg-[#2997FF]' : 'bg-zinc-700'
                         }`}
                       />
                     </div>
-                    <p className="mt-2.5 pl-9 text-sm leading-relaxed text-zinc-400 sm:text-base">
-                      {service.tagline}
+                    <h3 className="mt-4 text-xl font-semibold tracking-[-0.03em] text-white sm:text-2xl">
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+                      {service.brief}
                     </p>
-                    <p className="mt-3 pl-9 font-mono text-[11px] tracking-wide text-zinc-500">
-                      {service.spec}
-                    </p>
-                  </button>
-                );
-              })}
+                  </div>
+
+                  <p className="mt-6 border-t border-white/10 pt-4 text-xs font-medium text-zinc-500">
+                    {service.spec}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Full-Width Widescreen 3D Technical Stage */}
+          <div className="reveal-up relative w-full overflow-hidden border-b border-white/10 bg-tech-grid pt-4">
+            <div className="flex flex-wrap items-center justify-between gap-2 px-4 pb-2">
+              <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#2997FF]">
+                {SERVICES[activeService].modelLabel}
+              </span>
+              <span className="text-xs font-medium text-zinc-400">
+                {SERVICES[activeService].title}
+              </span>
             </div>
 
-            {/* Right: Widescreen 3D Technical Architecture Stage */}
-            <div className="relative lg:col-span-7">
-              <div className="relative w-full overflow-hidden border-y border-white/10 bg-tech-grid py-4 lg:border-l lg:border-y-0 lg:pl-6">
-                <div className="flex items-center justify-between px-2 pb-2">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#2997FF]">
-                    {SERVICES[activeService].modelLabel}
-                  </span>
-                  <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-400">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Real-Time 3D
-                  </span>
-                </div>
-
-                <ServicesTechCanvas activeIndex={activeService} />
-
-                <div className="flex items-center justify-between border-t border-white/10 px-2 pt-3 font-mono text-[11px] text-zinc-500">
-                  <span>{SERVICES[activeService].spec}</span>
-                  <span>0{activeService + 1} / 04</span>
-                </div>
-              </div>
-            </div>
+            <ServicesTechCanvas activeIndex={activeService} />
           </div>
         </div>
       </section>
 
-      {/* ================= PRODUCTS -> OPENS SEPARATE SENTINEL AI PAGE ================= */}
+      {/* ================= PRODUCTS -> OPENS SEPARATE SENTINELAI PAGE ================= */}
       <section
         id="products"
         className="relative w-full overflow-hidden border-t border-white/10 bg-gradient-to-b from-[#040812] via-[#060D1E] to-black py-28 lg:py-36"
@@ -231,7 +232,7 @@ export default function App() {
         <div className="reveal-up relative w-full px-6 sm:px-10 lg:px-16">
           <div className="flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
             <div className="max-w-3xl">
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#2997FF]">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
                 Products • PyPI Package (nitaanth-sentinelai v0.1.1)
               </p>
               <h2 className="mt-4 text-5xl font-semibold tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
@@ -253,29 +254,29 @@ export default function App() {
             </div>
           </div>
 
-          {/* Inline Hairline Specs (Real PyPI Facts, Zero Bluff) */}
+          {/* Inline Hairline Specs */}
           <div className="mt-16 grid grid-cols-2 gap-8 border-t border-white/10 pt-10 sm:grid-cols-4">
             <div>
               <p className="text-3xl font-semibold text-white">5 Scanners</p>
-              <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500">
+              <p className="mt-1 text-xs font-medium text-zinc-500">
                 Semgrep · Bandit · GitLeaks · Trivy · OSV
               </p>
             </div>
             <div>
               <p className="text-3xl font-semibold text-white">3-Stage AI</p>
-              <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500">
+              <p className="mt-1 text-xs font-medium text-zinc-500">
                 Ollama · Groq · Google Gemini
               </p>
             </div>
             <div>
               <p className="text-3xl font-semibold text-white">ast.parse</p>
-              <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500">
+              <p className="mt-1 text-xs font-medium text-zinc-500">
                 Syntax-Validated fix / undo
               </p>
             </div>
             <div>
               <p className="text-3xl font-semibold text-white">SARIF 2.1</p>
-              <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500">
+              <p className="mt-1 text-xs font-medium text-zinc-500">
                 JSON · HTML · Markdown · Terminal
               </p>
             </div>
@@ -283,47 +284,110 @@ export default function App() {
         </div>
       </section>
 
-      {/* ================= CLIENTS STRIP -> OPENS DEDICATED WHAT CLIENTS SAY PAGE ================= */}
-      <section className="w-full border-t border-white/10 bg-black py-20 lg:py-24">
+      {/* ================= CLIENT REVIEWS CAROUSEL -> CLICK TO OPEN CLIENTS PAGE ================= */}
+      <section
+        className="w-full border-t border-white/10 bg-[#030508] py-24 lg:py-28"
+        onMouseEnter={() => setCarouselPaused(true)}
+        onMouseLeave={() => setCarouselPaused(false)}
+      >
         <div className="reveal-up w-full px-6 sm:px-10 lg:px-16">
-          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div className="flex flex-col justify-between gap-6 border-b border-white/10 pb-8 sm:flex-row sm:items-end">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-zinc-500">
-                Trusted By
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2997FF]">
+                What Clients Say
               </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl">
-                What our clients say.
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-5xl">
+                Trusted across industries.
               </h2>
             </div>
-            <a
-              href="./clients.html"
-              className="group inline-flex items-center gap-2 text-sm font-medium text-[#2997FF] transition hover:text-white"
-            >
-              <span>Open Client Testimonials</span>
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
+
+            {/* Carousel Controls */}
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={prevReview}
+                aria-label="Previous client review"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-zinc-300 transition hover:border-white hover:text-white"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={nextReview}
+                aria-label="Next client review"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-zinc-300 transition hover:border-white hover:text-white"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+              <a
+                href="./clients.html"
+                className="ml-2 inline-flex items-center gap-1.5 text-sm font-medium text-[#2997FF] transition hover:text-white"
+              >
+                <span>All Reviews</span>
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
 
-          <div className="mt-12 grid divide-y divide-white/10 border-y border-white/10 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4">
-            {CLIENT_TESTIMONIALS.map((item, idx) => (
-              <a
-                key={item.id}
-                href="./clients.html"
-                className={`group flex flex-col justify-between py-7 transition hover:bg-white/[0.02] sm:px-6 ${
-                  idx > 0 ? 'lg:border-l lg:border-white/10' : 'lg:pl-0'
-                }`}
-              >
-                <span className="font-mono text-[11px] text-zinc-500">{item.sector}</span>
-                <span className="mt-3 text-xl font-semibold tracking-[-0.025em] text-white transition group-hover:text-[#2997FF]">
-                  {item.client}
+          {/* Clickable Full-Width Active Review Slide -> Opens Dedicated Clients Page */}
+          <a
+            href={`./clients.html#${currentReview.id}`}
+            className="group block border-b border-white/10 py-14 transition-colors hover:bg-white/[0.02] lg:py-16"
+          >
+            <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+              <div className="lg:col-span-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2997FF]">
+                  {currentReview.index} — {currentReview.engagement}
+                </p>
+                <h3 className="mt-3 text-3xl font-semibold tracking-[-0.035em] text-white transition group-hover:text-[#2997FF] sm:text-4xl">
+                  {currentReview.client}
+                </h3>
+                <p className="mt-2 text-sm text-zinc-400">{currentReview.sector}</p>
+                <span className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-zinc-300 transition group-hover:text-white">
+                  <span>Click to open full client story</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 text-[#2997FF] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </span>
-              </a>
-            ))}
+              </div>
+
+              <div className="lg:col-span-8 lg:border-l lg:border-white/10 lg:pl-12">
+                <blockquote className="text-2xl font-normal leading-[1.35] tracking-[-0.025em] text-zinc-100 sm:text-3xl lg:text-4xl">
+                  “{currentReview.quote}”
+                </blockquote>
+                <p className="mt-6 text-sm text-zinc-400">
+                  {currentReview.outcome}
+                </p>
+              </div>
+            </div>
+          </a>
+
+          {/* Horizontal Client Selector Tabs */}
+          <div className="grid grid-cols-2 divide-x divide-white/10 sm:grid-cols-4">
+            {CLIENT_TESTIMONIALS.map((item, idx) => {
+              const isSelected = idx === activeReview;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setActiveReview(idx)}
+                  className={`relative px-4 py-5 text-left transition ${
+                    isSelected ? 'opacity-100' : 'opacity-45 hover:opacity-80'
+                  }`}
+                >
+                  <span
+                    className={`absolute inset-x-0 top-0 h-[2px] transition-opacity ${
+                      isSelected ? 'bg-[#2997FF] opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                  <p className="text-sm font-semibold text-white">{item.client}</p>
+                  <p className="mt-1 text-xs text-zinc-500">{item.engagement}</p>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ================= FINAL INFORMATION, EMAIL & LOCATION ================= */}
+      {/* ================= FINAL INFORMATION, EMAIL & LOCATION WITH MAP ================= */}
       <ContactFooter />
     </div>
   );
